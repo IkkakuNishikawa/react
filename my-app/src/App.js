@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from "prop-types"
+import React , {Component} from 'react';
 
 // class App extends Component {
 //   render(){
@@ -12,34 +11,35 @@ import PropTypes from "prop-types"
 //   }
 // }
 
-const App = () => {
-  const profiles = [
-    {
-      name: "Taro",age: 10
-    },
-    {
-      name: "Hanako", age: 5
-    },
-    {
-      name: "Noname", age : 3
-    }
-  ]
-  return <div>
-    {
-      profiles.map((profiles, index)=> {
-        return <User name={profiles.name} age={profiles.age} key={index} />
-      })
-    }
-  </div>
+const App = () => (<Counter></Counter>)
+
+class Counter extends Component {
+  constructor(props) {
+    super(props)
+    console.log(this.state)
+    this.state = { count:0 }
+  }
+
+handlePlusButton = () => {
+  // this.state = { count:this.state.count+1  }
+  this.setState ({ count: this.state.count+1 })
 }
 
-const User = (props) => {
-  return <div>Hi, I am {props.name}, and {props.age} years old.</div>
+handleMinusButton = () => {
+  // this.state = { count:this.state.count+1  }
+  this.setState ({ count: this.state.count-1 })
 }
 
-User.propTypes = {
-  name: PropTypes.string,
-  age: PropTypes.number.isRequired
+  render() {
+    console.log('render')
+    return (
+      <React.Fragment>
+      <div>count: { this.state.count }</div>
+      <button onClick= { this.handlePlusButton }>+1</button>
+      <button onClick= { this.handleMinusButton }>-1</button>
+     </React.Fragment>
+    )
+  }
 }
 
 export default App;
